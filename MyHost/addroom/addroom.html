@@ -15,7 +15,7 @@
     <style>
       /* div 태그 가장 바깥 */
       .add-extra-room {
-        width: 50%;
+        width: 40%;
         outline: 1px solid black;
       }
 
@@ -23,16 +23,31 @@
         text-align: center;
         margin-bottom: 0px;
       }
+      .table>tbody>tr > td{
+        padding: 5px;
+        vertical-align: middle;
+      }
       .table > thead > tr > th {
         text-align: center;
         margin-bottom: 0px;
       }
 
-      #btn1 {
+      /* #btn1 {
         border-radius: 50px;
         background-color: rgb(160, 169, 212, 0.5);
         padding: 2px 5px;
+      } */
+      .btn-primary{
+        margin: 0 auto;
+        border-radius: 10px;
       }
+      .del-btn {
+        border-radius: 10px;
+      }
+      .base_num{
+        vertical-align: middle;
+      }
+      
     </style>
   </head>
   <body>
@@ -53,18 +68,6 @@
           </tr>
         </thead>
         <tbody class="detail_tbody">
-          <tr>
-            <td>1</td>
-            <td>Room A</td>
-            <td>2명</td>
-            <td><button>X</button></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Room B</td>
-            <td>3명</td>
-            <td><button>X</button></td>
-          </tr>
         </tbody>
       </table>
       <table class="table table-input-item">
@@ -82,14 +85,15 @@
             <td>기본인원</td>
             <td><input type="text" class="base_num" size="5" /> 명</td>
             <td>
-              <button type="bytton" id="btn1" style="width: 100%">추가</button>
+              <!-- 장소 추가 버튼 -->
+              <button type="button" class="btn btn-primary"" id="btn1">추가</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
     <script>
-      var num = 3;
+      var num = 1;
       //세부 방 타이틀
       var room_title = null;
       //기본 인원
@@ -105,6 +109,8 @@
       }
 
       $(document).ready(function () {
+        $("#btn1").parent().css({"text-align":"left","margin-left":"10px"});
+        $(".base_num").parent().css({"text-align":"left"});
         $("#btn1").click(function () {
           room_title = $(".room_title").val();
           base_num = $(".base_num").val();
@@ -116,7 +122,7 @@
             "</td><td>" +
             base_num +
             "</td>" +
-            "<td><button class='del-btn' idx='" +
+            "<td><button class='del-btn btn btn-danger' idx='" +
             counter +
             "'> X </button></td></tr>";
           $(".detail_tbody").append(html);
